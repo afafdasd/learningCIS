@@ -1,0 +1,7 @@
+stages:
+  - build
+
+hello-job:
+  stage: build
+  script:
+    - echo "Hello from $GITLAB_USER_LOGIN"
