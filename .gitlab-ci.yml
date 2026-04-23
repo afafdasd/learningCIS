@@ -1,0 +1,62 @@
+# Переменная STUDENT_NUM должна быть задана в GitLab -> Settings -> CI/CD -> Variables
+# Например: STUDENT_NUM = 64 для пользователя red64
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  COMPOSE_PROJECT_NAME: red${STUDENT_NUM}
+
+# ─── BUILD ────────────────────────────────────────────────────────────────────
+
+build-backend:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker build -t red${STUDENT_NUM}-backend:latest ./backend
+  only:
+    - main
+
+build-frontend:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker build -t red${STUDENT_NUM}-frontend:latest ./frontend
+  only:
+    - main
+
+# ─── TEST ─────────────────────────────────────────────────────────────────────
+
+test-backend:
+  stage: test
+  tags:
+    - docker
+  script:
+    - docker run --rm red${STUDENT_NUM}-backend:latest
+        python -c "from app import app; client = app.test_client(); r = client.get('/api/health'); assert r.status_code == 200"
+  only:
+    - main
+
+# ─── DEPLOY ───────────────────────────────────────────────────────────────────
+
+deploy:
+  stage: deploy
+  tags:
+    - docker
+  script:
+    # Остановить и удалить старые контейнеры этого студента (если есть)
+    - docker compose -p red${STUDENT_NUM} down --remove-orphans || true
+    # Поднять новые контейнеры
+    - STUDENT_NUM=${STUDENT_NUM} docker compose -p red${STUDENT_NUM} up -d --build
+    # Проверка что контейнеры запустились
+    - sleep 3
+    - docker ps | grep red${STUDENT_NUM}
+  only:
+    - main
+  environment:
+    name: production
+    url: http://<RUNNER_SERVER_IP>:40${STUDENT_NUM}
