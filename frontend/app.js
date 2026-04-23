@@ -1,5 +1,5 @@
-// BACKEND_URL is replaced at container startup via envsubst or hardcoded
-const BACKEND_URL = window.BACKEND_URL || "http://localhost:5000";
+// Все запросы идут через nginx-прокси на /api
+const BACKEND_URL = "";
 
 async function fetchStudentInfo() {
   try {
