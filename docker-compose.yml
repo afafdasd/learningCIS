@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: red${STUDENT_NUM}-backend
+    environment:
+      - STUDENT_ID=${STUDENT_NUM}
+    networks:
+      - app-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: red${STUDENT_NUM}-frontend
+    ports:
+      - "40${STUDENT_NUM}:80"
+    depends_on:
+      - backend
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    name: red${STUDENT_NUM}-net
+    driver: bridge
