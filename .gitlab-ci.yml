@@ -10,6 +10,6 @@ hello-job:
 info-job:
   stage: info
   script:
-    - echo "User: $GITLAB_USER_LOGIN"
-    - echo "Branch: $CI_COMMIT_BRANCH"
-    - echo "Pipeline ID: $CI_PIPELINE_ID"
+    - echo "User $GITLAB_USER_LOGIN"
+    - echo "Branch $CI_COMMIT_BRANCH"
+    - echo "Pipeline ID $CI_PIPELINE_ID"
