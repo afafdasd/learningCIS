@@ -13,8 +13,6 @@ variables:
 
 build-backend:
   stage: build
-  tags:
-    - docker
   script:
     - docker build -t red${STUDENT_NUM}-backend:latest ./backend
   only:
@@ -22,8 +20,6 @@ build-backend:
 
 build-frontend:
   stage: build
-  tags:
-    - docker
   script:
     - docker build -t red${STUDENT_NUM}-frontend:latest ./frontend
   only:
@@ -33,8 +29,6 @@ build-frontend:
 
 test-backend:
   stage: test
-  tags:
-    - docker
   script:
     - docker run --rm red${STUDENT_NUM}-backend:latest
         python -c "from app import app; client = app.test_client(); r = client.get('/api/health'); assert r.status_code == 200"
@@ -45,8 +39,6 @@ test-backend:
 
 deploy:
   stage: deploy
-  tags:
-    - docker
   script:
     # Остановить и удалить старые контейнеры этого студента (если есть)
     - docker compose -p red${STUDENT_NUM} down --remove-orphans || true
