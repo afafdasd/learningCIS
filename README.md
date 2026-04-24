@@ -10,6 +10,23 @@
 - `docker-compose.yml` — оркестрация контейнеров
 - `.gitlab-ci.yml` — CI/CD pipeline
 
+## Настройка переменной `STUDENT_NUM` в GitLab
+
+Каждый студент должен выполнить следующие шаги:
+
+1. Перейти в свой репозиторий `redXX-app`
+2. Открыть **Settings → CI/CD → Variables**
+3. Нажать **Add variable**
+4. Установить параметры:
+
+   - **Key:** `STUDENT_NUM`
+   - **Value:** `07` (укажите свой номер)
+   - **Type:** `Variable`
+   - **Protected:** нет
+   - **Masked:** нет
+
+5. Сохранить
+
 ## Требования
 - Docker >= 24.x
 - Docker Compose >= 2.x
@@ -20,3 +37,4 @@
 ```bash
 export STUDENT_NUM=07
 docker compose -p red07 up --build
+
