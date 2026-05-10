@@ -1,0 +1,42 @@
+[33mcommit 0a07c9a30e22b59275e5ac60e3ec6270c7f44035[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ChallengeEverything <49035573+ChallengeEverything@users.noreply.github.com>
+Date:   Fri Apr 24 15:40:37 2026 +0300
+
+    Update README.md
+
+[1mdiff --git a/README.md b/README.md[m
+[1mindex f9eb58a..0176a98 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -10,6 +10,23 @@[m
+ - `docker-compose.yml` — оркестрация контейнеров[m
+ - `.gitlab-ci.yml` — CI/CD pipeline[m
+ [m
+[32m+[m[32m## Настройка переменной `STUDENT_NUM` в GitLab[m
+[32m+[m
+[32m+[m[32mКаждый студент должен выполнить следующие шаги:[m
+[32m+[m
+[32m+[m[32m1. Перейти в свой репозиторий `redXX-app`[m
+[32m+[m[32m2. Открыть **Settings → CI/CD → Variables**[m
+[32m+[m[32m3. Нажать **Add variable**[m
+[32m+[m[32m4. Установить параметры:[m
+[32m+[m
+[32m+[m[32m   - **Key:** `STUDENT_NUM`[m
+[32m+[m[32m   - **Value:** `07` (укажите свой номер)[m
+[32m+[m[32m   - **Type:** `Variable`[m
+[32m+[m[32m   - **Protected:** нет[m
+[32m+[m[32m   - **Masked:** нет[m
+[32m+[m
+[32m+[m[32m5. Сохранить[m
+[32m+[m
+ ## Требования[m
+ - Docker >= 24.x[m
+ - Docker Compose >= 2.x[m
+[36m@@ -19,4 +36,5 @@[m
+ [m
+ ```bash[m
+ export STUDENT_NUM=07[m
+[31m-docker compose -p red07 up --build[m
+\ No newline at end of file[m
+[32m+[m[32mdocker compose -p red07 up --build[m
+[41m+[m

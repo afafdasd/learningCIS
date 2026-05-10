@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # redXX-app — GitLab CI/CD Demo
 
 ## Описание
@@ -38,3 +39,8 @@
 export STUDENT_NUM=07
 docker compose -p red07 up --build
 
+=======
+"Проект Кис"
+Дроздов Арсеий Андреевич 
+242 
+>>>>>>> f781bf5e6a889b678b5f68a996e6406e64b21fd0
